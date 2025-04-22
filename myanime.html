@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAnime - Watch Anime Online</title>
+    
+    <!-- Favicon Setup -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="images/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="images/android-chrome-512x512.png" sizes="512x512">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="myanime.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#" class="logo">MyAnime</a>
+            <button class="hamburger" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#animes" class="nav-link">Animes</a></li>  
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="page active-page">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Jujutsu Kaisen</h1>
+                    <p>Gojo Satoru's unmatched strength and blind confidence make him a force to be reckoned with.</p>
+                    <div class="btn-group">
+                        <a href="videos\jjk_1.mp4" class="btn btn-primary">Watch Now</a>
+                        <a href="#4" class="btn btn-secondary">Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="featured-anime container">
+                <h2 class="section-title">Featured Anime</h2>
+                <div class="anime-grid">
+                    <!-- Featured anime will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Animes Section -->
+        <section id="animes" class="page">
+            <div class="container">
+                <h2 class="section-title">All Animes</h2>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="trending">Trending</button>
+                    <button class="filter-btn" data-filter="popular">Popular</button>
+                    <button class="filter-btn" data-filter="new">New Releases</button>
+                </div>
+                <div class="anime-grid" id="all-animes">
+                    <!-- Animes will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2 class="section-title">About MyAnime</h2>
+                <div class="about-content">
+                    <p>MyAnime is your premier destination for streaming the latest and greatest anime shows. Our mission is to bring anime fans together and provide high-quality streaming with a user-friendly experience.</p>
+                    
+                    <div class="contributors">
+                        <h3>Our Team</h3>
+                        <div class="contributor-card">
+                            <img src="images/pavan.jpg" alt="UVS Pavan" class="contributor-img">
+                            <div class="contributor-info">
+                                <h4>UVS Pavan</h4>
+                                <p>Anime Expert</p>
+                                <p class="bio">With over 10 years of anime experience, Pavan curates our top picks and ensures quality content.</p>
+                            </div>
+                        </div>
+                        <div class="contributor-card">
+                            <img src="images/vinay.jpeg" alt="T Vinay" class="contributor-img">
+                            <div class="contributor-info">
+                                <h4>T Vinay</h4>
+                                <p>Editor</p>
+                                <p class="bio">Vinay manages our content and ensures accurate information about all anime series.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Us</h3>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+<div class="rating-section">
+    <h3>Rate Our Website</h3>
+    <div class="star-rating">
+        <i class="fas fa-star" data-rating="1"></i>
+        <i class="fas fa-star" data-rating="2"></i>
+        <i class="fas fa-star" data-rating="3"></i>
+        <i class="fas fa-star" data-rating="4"></i>
+        <i class="fas fa-star" data-rating="5"></i>
+    </div>
+    <p class="rating-text">Click to rate</p>
+    <div class="thank-you-message" style="display: none;">
+        Thank you for your rating!
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anime Details Modal -->
+        <div id="anime-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body">
+                    <img id="modal-anime-img" src="" alt="Anime Cover" class="modal-cover">
+                    <div class="modal-info">
+                        <h2 id="modal-anime-title"></h2>
+                        <div class="anime-meta">
+                            <span class="rating"><i class="fas fa-star"></i> <span id="modal-anime-rating"></span></span>
+                            <span class="episodes"><i class="fas fa-play-circle"></i> <span id="modal-anime-episodes"></span> episodes</span>
+                            <span class="status"><i class="fas fa-info-circle"></i> <span id="modal-anime-status"></span></span>
+                        </div>
+                        <p id="modal-anime-desc"></p>
+                        <div class="episodes-container">
+                            <h3>Episodes</h3>
+                            <div class="episodes-list" id="episodes-list">
+                                <!-- Episodes will be loaded here dynamically -->
+                            </div>
+                        </div>
+                        <button class="btn btn-primary watch-btn">Watch Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">MyAnime</div>
+            <div class="footer-links">
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 MyAnime. All rights reserved.</p>
+        <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Back to Top</a>
+    </footer>
+
+    <script src="myanime2.js"></script>
+</body>
+</html>
