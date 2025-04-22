@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 1,
             title: "WIND BREAKER Season 2",
-            cover: "wind_breaker.jpg",
+            cover: "images/wind_breaker.jpg",
             rating: 4.8,
             episodes: 12,
             status: "Ongoing",
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 2,
             title: "Demon Slayer: Kimetsu no Yaiba",
-            cover: "demon_slayer.jpg",
+            cover: "images/demon_slayer.jpg",
             rating: 4.9,
             episodes: 26,
             status: "Completed",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 4,
             title: "Jujutsu Kaisen",
-            cover: "jjk.jpg",
+            cover: "images/jjk.jpg",
             rating: 4.7,
             episodes: 24,
             status: "Completed",
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 5,
             title: "My Hero Academia Season 6",
-            cover: "my_hero_Academia.jpg",
+            cover: "images/my_hero_Academia.jpg",
             rating: 4.6,
             episodes: 25,
             status: "Completed",
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 6,
             title: "Chainsaw Man",
-            cover: "chainsaw_man.jpg",
+            cover: "images/chainsaw_man.jpg",
             rating: 4.8,
             episodes: 12,
             status: "Completed",
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 7,
             title: "Sakamoto Days",
-            cover: "sakamoto.jpg",
+            cover: "images/sakamoto.jpg",
             rating: 4.9,
             episodes: 11,
             status: "Completed",
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 8,
             title: "Solo Leveling Season 2",
-            cover: "solo_leveling.jpg",
+            cover: "images/solo_leveling.jpg",
             rating: 4.7,
             episodes: 25,
             status: "Completed",
