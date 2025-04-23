@@ -728,6 +728,7 @@ footer {
 .faq-question {
   width: 100%;
   padding: 1rem;
+  color:black;
   text-align: left;
   background: #f9f9f9;
   border: none;
