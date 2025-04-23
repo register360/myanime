@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Welcome back to Furth High School...",
             category: ["trending", "new"],
             episodeSources: [
-                "videos/jjk_1.mp4",
-                "videos/wind_breaker_2.mp4",
+                "https://drive.google.com/uc?export=view&id=1Z7N1oFPWpFBkaPfo9YdlyeNKA_kymhw-",
+                "https://drive.google.com/file/d/1Z7N1oFPWpFBkaPfo9YdlyeNKA_kymhw-/view?usp=sharing",
                 // ... more episodes
             ]
         },
