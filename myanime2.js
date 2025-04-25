@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             episodeSources: [
                 "https://player.vimeo.com/video/1078720743?badge=0&amp",
                 "https://player.vimeo.com/video/1078720979?badge=0&amp",
-                "videos/jjk_3.mp4",
+                "https://player.vimeo.com/video/1078741228?h=826489d858&amp",
             ]
         },
         {
@@ -95,7 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
             status: "Completed",
             description: "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained.",
             category: ["trending"]
+            episodeSources: [
+    "https://player.vimeo.com/video/1078742723?h=4d0ca6454f&amp",
+        ]
         }
+    
     ];
 
     // DOM Elements Cache
