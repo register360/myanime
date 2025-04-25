@@ -141,7 +141,7 @@ body {
   height:505.06px;
   width: 1900px;
   color: white;
-  background-image: url('gojo.jpg'); 
+  background-image: url('images/gojo.jpg'); 
   background-size: cover;
   background-position: center;
   padding-top: 240px;
@@ -720,15 +720,15 @@ footer {
 
 .faq-item {
   margin-bottom: 1rem;
-  border: 1px solid #eee;
+  border: 1px solid #323232;
   border-radius: 5px;
   overflow: hidden;
 }
 
 .faq-question {
+  color: #000;
   width: 100%;
   padding: 1rem;
-  color:black;
   text-align: left;
   background: #f9f9f9;
   border: none;
@@ -741,7 +741,7 @@ footer {
 }
 
 .faq-question:hover {
-  background: #f0f0f0;
+  background: #ff9c9c;
 }
 
 .faq-question i {
@@ -1091,4 +1091,181 @@ button:disabled {
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
+}/* Vimeo Player Styles */
+.video-player-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-player {
+  width: 90%;
+  max-width: 1200px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-header {
+  padding: 15px 20px;
+  background: #222;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-video {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.vimeo-embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  background: #000;
+}
+
+.vimeo-embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.episodes-list-container {
+  padding: 15px;
+  background: #1a1a1a;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.episodes-scrollable {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.video-episode {
+  background: #2a2a2a;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.video-episode.active {
+  background: #3a3a3a;
+  border-left: 3px solid #f00;
+}
+
+.play-episode-btn {
+  background: #f00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* HTML5 Video Player Styles */
+video {
+  width: 100%;
+  display: block;
+}
+
+.video-controls-bar {
+  background: #222;
+  padding: 10px;
+}
+
+.progress-container {
+  height: 5px;
+  background: #333;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #f00;
+  width: 0%;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-controls, .right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.time-display {
+  color: white;
+  font-size: 14px;
+}
+
+.quality-selector {
+  position: relative;
+}
+
+.quality-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #333;
+  border-radius: 4px;
+  padding: 5px 0;
+  display: none;
+  z-index: 10;
+}
+
+.quality-dropdown div {
+  padding: 5px 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.quality-dropdown div:hover {
+  background: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-player {
+      width: 95%;
+  }
+  
+  .controls-container {
+      flex-direction: column;
+      gap: 10px;
+  }
+  
+  .left-controls, .right-controls {
+      width: 100%;
+      justify-content: space-between;
+  }
 }
