@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Welcome back to Furth High School...",
             category: ["trending", "new"],
             episodeSources: [
-                "https://drive.google.com/uc?export=view&id=1Z7N1oFPWpFBkaPfo9YdlyeNKA_kymhw-",
-                "https://drive.google.com/file/d/1Z7N1oFPWpFBkaPfo9YdlyeNKA_kymhw-/view?usp=sharing",
+                "",
+                "videos/wind_breaker_2.mp4",
                 // ... more episodes
             ]
         },
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Tanjiro Kamado, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon.",
             category: ["popular"],
             episodeSources: [" "]
-
         },
         {
             id: 3,
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Eren Yeager and his friends fight to save humanity from the Titans in this action-packed final season.",
             category: ["trending", "popular"],
             episodeSources: [
-                "videos/Levi_1.mp4",
+                "https://player.vimeo.com/video/1078721283?badge=0&amp",
              ]
         },
         {
@@ -51,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Yuji Itadori swallows a cursed talisman and becomes host to a powerful curse.",
             category: ["popular"],
             episodeSources: [
-                "videos/jjk_1.mp4",
-                "videos/jjk_2.mp4",
+                "https://player.vimeo.com/video/1078720743?badge=0&amp",
+                "https://player.vimeo.com/video/1078720979?badge=0&amp",
                 "videos/jjk_3.mp4",
             ]
         },
@@ -148,29 +147,32 @@ document.addEventListener('DOMContentLoaded', function() {
         allAnimeGrid.innerHTML = filteredAnime.map(createAnimeCard).join('');
         setupAnimeCardEvents('#all-animes .anime-card');
     }
-// Create anime card HTML
-function createAnimeCard(anime) {
-    // Check if episodeSources is empty or contains only empty strings
-    const hasEpisodes = anime.episodeSources && 
-                        anime.episodeSources.length > 0 && 
-                        anime.episodeSources.some(src => src.trim() !== '');
-    
-    const statusBadge = !hasEpisodes ? '<div class="not-uploaded-badge">Not Yet Uploaded</div>' : '';
-    
-    return `
-        <div class="anime-card" data-id="${anime.id}">
-            <img src="${anime.cover}" alt="${anime.title}" class="anime-cover" loading="lazy">
-            ${statusBadge}
-            <div class="anime-info">
-                <h3 class="anime-title">${anime.title}</h3>
-                <div class="anime-meta">
-                    <span><i class="fas fa-star"></i> ${anime.rating}</span>
-                    <span>${anime.episodes} eps</span>
+
+    // Create anime card HTML
+    function createAnimeCard(anime) {
+        // Check if episodeSources is empty or contains only empty strings
+        const hasEpisodes = anime.episodeSources && 
+                            anime.episodeSources.length > 0 && 
+                            anime.episodeSources.some(src => src.trim() !== '');
+        
+        const statusBadge = !hasEpisodes ? '<div class="not-uploaded-badge">Not Yet Uploaded</div>' : '';
+        
+        return `
+            <div class="anime-card" data-id="${anime.id}">
+                <img src="${anime.cover}" alt="${anime.title}" class="anime-cover" loading="lazy">
+                ${statusBadge}
+                <div class="anime-info">
+                    <h3 class="anime-title">${anime.title}</h3>
+                    <div class="anime-meta">
+                        <span><i class="fas fa-star"></i> ${anime.rating}</span>
+                        <span>${anime.episodes} eps</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-}    // Set up click events for anime cards
+        `;
+    }
+
+    // Set up click events for anime cards
     function setupAnimeCardEvents(selector) {
         document.querySelectorAll(selector).forEach(card => {
             card.addEventListener('click', function() {
@@ -223,216 +225,261 @@ function createAnimeCard(anime) {
         document.body.style.overflow = 'hidden';
     }
 
-   function playEpisode(animeId, episodeNum) {
-    const anime = animeData.find(a => a.id === animeId);
-    if (!anime) return;   
+    function playEpisode(animeId, episodeNum) {
+        const anime = animeData.find(a => a.id === animeId);
+        if (!anime) return;
 
-    let videoContainer = document.getElementById('video-player-container');
-    if (!videoContainer) {
-        videoContainer = document.createElement('div');
-        videoContainer.id = 'video-player-container';
-        videoContainer.className = 'video-player-container';
-        document.body.appendChild(videoContainer);
-    }
-    
-    // Video player HTML with enhanced controls matching screenshot style
-    videoContainer.innerHTML = `
-        <div class="video-player">
-            <div class="video-header">
-                <h3>${anime.title} - Episode ${episodeNum}</h3>
-                <button class="close-video" aria-label="Close video player">&times;</button>
-            </div>
-            <video controls autoplay playsinline>
-                <source src="${anime.episodeSources[episodeNum-1]}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-controls-bar">
-                <div class="progress-container">
-                    <div class="progress-bar"></div>
-                </div>
-                <div class="controls-container">
-                    <div class="left-controls">
-                        <button class="skip-backward" title="Rewind 10 seconds">
-                            <i class="fas fa-undo"></i> 10s
-                        </button>
-                        <button class="play-pause">
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <button class="skip-forward" title="Forward 10 seconds">
-                            10s <i class="fas fa-redo"></i>
-                        </button>
-                        <span class="time-display">00:00 / 24:27</span>
+        // Close any existing video player
+        closeVideoPlayer();
+
+        let videoContainer = document.getElementById('video-player-container');
+        if (!videoContainer) {
+            videoContainer = document.createElement('div');
+            videoContainer.id = 'video-player-container';
+            videoContainer.className = 'video-player-container';
+            document.body.appendChild(videoContainer);
+        }
+
+        // Check if this is a Vimeo URL
+        const isVimeo = anime.episodeSources[episodeNum-1]?.includes('vimeo.com');
+        
+        if (isVimeo) {
+            // Vimeo player HTML
+            videoContainer.innerHTML = `
+                <div class="video-player vimeo-player">
+                    <div class="video-header">
+                        <h3>${anime.title} - Episode ${episodeNum}</h3>
+                        <button class="close-video" aria-label="Close video player">&times;</button>
                     </div>
-                    <div class="right-controls">
-                        <div class="quality-selector">
-                            <button class="quality-btn">
-                                <i class="fas fa-cog"></i> Quality
-                            </button>
-                            <div class="quality-dropdown">
-                                <div data-quality="auto">Auto</div>
-                                <div data-quality="1080">1080p</div>
-                                <div data-quality="720">720p</div>
-                                <div data-quality="480">480p</div>
+                    <div class="vimeo-embed-container" style="padding:56.25% 0 0 0;position:relative;">
+                        <iframe src="${anime.episodeSources[episodeNum-1]}&autoplay=1&muted=0" 
+                                frameborder="0" 
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                title="${anime.title} Episode ${episodeNum}">
+                        </iframe>
+                    </div>
+                    <div class="episodes-list-container">
+                        <h4>Episodes</h4>
+                        <div class="episodes-scrollable">
+                            ${Array.from({length: anime.episodes}, (_, i) => `
+                                <div class="video-episode ${i+1 === episodeNum ? 'active' : ''}">
+                                    <span>Episode ${i+1}</span>
+                                    <button class="play-episode-btn" data-episode="${i+1}">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Load Vimeo player API
+            const script = document.createElement('script');
+            script.src = 'https://player.vimeo.com/api/player.js';
+            document.body.appendChild(script);
+            
+        } else {
+            // Regular HTML5 video player
+            videoContainer.innerHTML = `
+                <div class="video-player">
+                    <div class="video-header">
+                        <h3>${anime.title} - Episode ${episodeNum}</h3>
+                        <button class="close-video" aria-label="Close video player">&times;</button>
+                    </div>
+                    <video controls autoplay playsinline>
+                        <source src="${anime.episodeSources[episodeNum-1]}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls-bar">
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div class="controls-container">
+                            <div class="left-controls">
+                                <button class="skip-backward" title="Rewind 10 seconds">
+                                    <i class="fas fa-undo"></i> 10s
+                                </button>
+                                <button class="play-pause">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="skip-forward" title="Forward 10 seconds">
+                                    10s <i class="fas fa-redo"></i>
+                                </button>
+                                <span class="time-display">00:00 / 24:27</span>
+                            </div>
+                            <div class="right-controls">
+                                <div class="quality-selector">
+                                    <button class="quality-btn">
+                                        <i class="fas fa-cog"></i> Quality
+                                    </button>
+                                    <div class="quality-dropdown">
+                                        <div data-quality="auto">Auto</div>
+                                        <div data-quality="1080">1080p</div>
+                                        <div data-quality="720">720p</div>
+                                        <div data-quality="480">480p</div>
+                                    </div>
+                                </div>
+                                <button class="download-btn" title="Download episode">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="fullscreen-btn" title="Fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
                             </div>
                         </div>
-                        <button class="download-btn" title="Download episode">
-                            <i class="fas fa-download"></i>
-                        </button>
-                        <button class="fullscreen-btn" title="Fullscreen">
-                            <i class="fas fa-expand"></i>
-                        </button>
+                    </div>
+                    <div class="episodes-list-container">
+                        <h4>Episodes</h4>
+                        <div class="episodes-scrollable">
+                            ${Array.from({length: anime.episodes}, (_, i) => `
+                                <div class="video-episode ${i+1 === episodeNum ? 'active' : ''}">
+                                    <span>Episode ${i+1}</span>
+                                    <button class="play-episode-btn" data-episode="${i+1}">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="episodes-list-container">
-                <h4>Episodes</h4>
-                <div class="episodes-scrollable">
-                    ${Array.from({length: anime.episodes}, (_, i) => `
-                        <div class="video-episode ${i+1 === episodeNum ? 'active' : ''}">
-                            <span>Episode ${i+1}</span>
-                            <button class="play-episode-btn" data-episode="${i+1}">
-                                <i class="fas fa-play"></i>
-                            </button>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Show video player
-    videoContainer.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    
-    // Get video player elements
-    const videoElement = videoContainer.querySelector('video');
-    const closeBtn = videoContainer.querySelector('.close-video');
-    const playPauseBtn = videoContainer.querySelector('.play-pause');
-    const skipBackward = videoContainer.querySelector('.skip-backward');
-    const skipForward = videoContainer.querySelector('.skip-forward');
-    const downloadBtn = videoContainer.querySelector('.download-btn');
-    const qualityBtn = videoContainer.querySelector('.quality-btn');
-    const qualityDropdown = videoContainer.querySelector('.quality-dropdown');
-    const fullscreenBtn = videoContainer.querySelector('.fullscreen-btn');
-    const progressBar = videoContainer.querySelector('.progress-bar');
-    const timeDisplay = videoContainer.querySelector('.time-display');
-    
-    // Event listeners for video player
-    closeBtn.addEventListener('click', closeVideoPlayer);
-    
-    // Play/Pause toggle
-    playPauseBtn.addEventListener('click', () => {
-        if (videoElement.paused) {
-            videoElement.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            videoElement.pause();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            `;
         }
-    });
-    
-    // Skip backward 10 seconds
-    skipBackward.addEventListener('click', () => {
-        videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
-    });
-    
-    // Skip forward 10 seconds
-    skipForward.addEventListener('click', () => {
-        videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 10);
-    });
-    
-    // Download button
-    downloadBtn.addEventListener('click', () => {
-        const link = document.createElement('a');
-        link.href = anime.episodeSources[episodeNum-1];
-        link.download = `${anime.title.replace(/\s+/g, '_')}_Episode_${episodeNum}.mp4`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    });
-    
-    // Quality selector
-    qualityBtn.addEventListener('click', () => {
-        qualityDropdown.style.display = qualityDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-    
-    qualityDropdown.querySelectorAll('div').forEach(item => {
-        item.addEventListener('click', function() {
-            const quality = this.getAttribute('data-quality');
-            console.log('Selected quality:', quality);
-            qualityBtn.innerHTML = `<i class="fas fa-cog"></i> ${quality === 'auto' ? 'Quality' : quality}`;
-            qualityDropdown.style.display = 'none';
-            // In a real implementation, you would change the video source based on quality
-        });
-    });
-    
-    // Fullscreen toggle
-    fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            videoContainer.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+
+        // Show video player
+        videoContainer.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // Add event listeners
+        const closeBtn = videoContainer.querySelector('.close-video');
+        closeBtn.addEventListener('click', closeVideoPlayer);
+
+        // Add click events to episode buttons in video player
+        videoContainer.querySelectorAll('.play-episode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const newEpisodeNum = parseInt(this.getAttribute('data-episode'));
+                if (newEpisodeNum !== episodeNum) {
+                    playEpisode(animeId, newEpisodeNum);
+                }
             });
-        } else {
-            document.exitFullscreen();
-        }
-    });
-    
-    // Update progress bar and time display
-    videoElement.addEventListener('timeupdate', () => {
-        const progress = (videoElement.currentTime / videoElement.duration) * 100;
-        progressBar.style.width = `${progress}%`;
-        
-        // Format time display
-        const currentTime = formatTime(videoElement.currentTime);
-        const duration = formatTime(videoElement.duration);
-        timeDisplay.textContent = `${currentTime} / ${duration}`;
-    });
-    
-    // Click on progress bar to seek
-    const progressContainer = videoContainer.querySelector('.progress-container');
-    progressContainer.addEventListener('click', (e) => {
-        const rect = progressContainer.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
-        videoElement.currentTime = pos * videoElement.duration;
-    });
-    
-    // Helper function to format time
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-    
-    // Add click events to episode buttons in video player
-    videoContainer.querySelectorAll('.play-episode-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const newEpisodeNum = parseInt(this.getAttribute('data-episode'));
-            if (newEpisodeNum !== episodeNum) {
-                playEpisode(animeId, newEpisodeNum);
-            }
         });
-    });
-    
-    // Keyboard controls
-    videoContainer.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeVideoPlayer();
-        if (e.key === 'ArrowLeft') videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
-        if (e.key === 'ArrowRight') videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 10);
-        if (e.key === ' ') {
-            e.preventDefault();
-            if (videoElement.paused) videoElement.play();
-            else videoElement.pause();
+
+        // Close when clicking outside
+        videoContainer.addEventListener('click', (e) => {
+            if (e.target === videoContainer) closeVideoPlayer();
+        });
+
+        // For HTML5 video player, add the controls logic
+        if (!isVimeo) {
+            const videoElement = videoContainer.querySelector('video');
+            const playPauseBtn = videoContainer.querySelector('.play-pause');
+            const skipBackward = videoContainer.querySelector('.skip-backward');
+            const skipForward = videoContainer.querySelector('.skip-forward');
+            const downloadBtn = videoContainer.querySelector('.download-btn');
+            const qualityBtn = videoContainer.querySelector('.quality-btn');
+            const qualityDropdown = videoContainer.querySelector('.quality-dropdown');
+            const fullscreenBtn = videoContainer.querySelector('.fullscreen-btn');
+            const progressBar = videoContainer.querySelector('.progress-bar');
+            const timeDisplay = videoContainer.querySelector('.time-display');
+            const progressContainer = videoContainer.querySelector('.progress-container');
+            
+            // Play/Pause toggle
+            playPauseBtn.addEventListener('click', () => {
+                if (videoElement.paused) {
+                    videoElement.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    videoElement.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+            
+            // Skip backward 10 seconds
+            skipBackward.addEventListener('click', () => {
+                videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
+            });
+            
+            // Skip forward 10 seconds
+            skipForward.addEventListener('click', () => {
+                videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 10);
+            });
+            
+            // Download button
+            downloadBtn.addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.href = anime.episodeSources[episodeNum-1];
+                link.download = `${anime.title.replace(/\s+/g, '_')}_Episode_${episodeNum}.mp4`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+            
+            // Quality selector
+            qualityBtn.addEventListener('click', () => {
+                qualityDropdown.style.display = qualityDropdown.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            qualityDropdown.querySelectorAll('div').forEach(item => {
+                item.addEventListener('click', function() {
+                    const quality = this.getAttribute('data-quality');
+                    console.log('Selected quality:', quality);
+                    qualityBtn.innerHTML = `<i class="fas fa-cog"></i> ${quality === 'auto' ? 'Quality' : quality}`;
+                    qualityDropdown.style.display = 'none';
+                });
+            });
+            
+            // Fullscreen toggle
+            fullscreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    videoContainer.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+            
+            // Update progress bar and time display
+            videoElement.addEventListener('timeupdate', () => {
+                const progress = (videoElement.currentTime / videoElement.duration) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                const currentTime = formatTime(videoElement.currentTime);
+                const duration = formatTime(videoElement.duration);
+                timeDisplay.textContent = `${currentTime} / ${duration}`;
+            });
+            
+            // Click on progress bar to seek
+            progressContainer.addEventListener('click', (e) => {
+                const rect = progressContainer.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                videoElement.currentTime = pos * videoElement.duration;
+            });
+            
+            // Keyboard controls
+            videoContainer.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeVideoPlayer();
+                if (e.key === 'ArrowLeft') videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
+                if (e.key === 'ArrowRight') videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 10);
+                if (e.key === ' ') {
+                    e.preventDefault();
+                    if (videoElement.paused) videoElement.play();
+                    else videoElement.pause();
+                }
+            });
+            
+            // Helper function to format time
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            // Focus the video for keyboard controls
+            videoElement.focus();
         }
-    });
-    
-    // Close when clicking outside
-    videoContainer.addEventListener('click', (e) => {
-        if (e.target === videoContainer) closeVideoPlayer();
-    });
-    
-    // Focus the video for keyboard controls
-    videoElement.focus();
-}
+    }
 
     // Close video player
     function closeVideoPlayer() {
