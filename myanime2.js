@@ -231,19 +231,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function playEpisode(animeId, episodeNum) {
-        const anime = animeData.find(a => a.id === animeId);
-        if (!anime) return;
+    const anime = animeData.find(a => a.id === animeId);
+    if (!anime) return;
 
-        // Close any existing video player
-        closeVideoPlayer();
+    // Close the anime modal first
+    closeAnimeModal();
 
-        let videoContainer = document.getElementById('video-player-container');
-        if (!videoContainer) {
-            videoContainer = document.createElement('div');
-            videoContainer.id = 'video-player-container';
-            videoContainer.className = 'video-player-container';
-            document.body.appendChild(videoContainer);
-        }
+    // Then proceed with opening the video player
+    let videoContainer = document.getElementById('video-player-container');
+    if (!videoContainer) {
+        videoContainer = document.createElement('div');
+        videoContainer.id = 'video-player-container';
+        videoContainer.className = 'video-player-container';
+        document.body.appendChild(videoContainer);
+    }
+
 
         // Check if this is a Vimeo URL
         const isVimeo = anime.episodeSources[episodeNum-1]?.includes('vimeo.com');
@@ -370,11 +372,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Close when clicking outside
-        videoContainer.addEventListener('click', (e) => {
-            if (e.target === videoContainer) closeVideoPlayer();
-        });
 
+        
         // For HTML5 video player, add the controls logic
         if (!isVimeo) {
             const videoElement = videoContainer.querySelector('video');
