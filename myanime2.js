@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             episodes: 25,
             status: "Completed",
             description: "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained.",
-            category: ["trending"]
+            category: ["trending"],
             episodeSources: [
     "https://player.vimeo.com/video/1078742723?h=4d0ca6454f&amp",
         ]
