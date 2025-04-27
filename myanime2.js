@@ -37,8 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Eren Yeager and his friends fight to save humanity from the Titans in this action-packed final season.",
             category: ["trending", "popular"],
             episodeSources: [
-                "https://player.vimeo.com/video/1078721283?badge=0&amp",
-                "https://player.vimeo.com/video/1078738169?h=2a8d3548b9&amp",
+                "https://streamtape.com/e/yAaVlBy6kjU1pjr/",
              ]
         },
         {
@@ -248,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         // Check if this is a Vimeo URL
-        const isVimeo = anime.episodeSources[episodeNum-1]?.includes('vimeo.com');
+        const isVimeo = anime.episodeSources[episodeNum-1]?.includes('streamtape.com');
         
         if (isVimeo) {
             // Vimeo player HTML
