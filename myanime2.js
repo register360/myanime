@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Eren Yeager and his friends fight to save humanity from the Titans in this action-packed final season.",
             category: ["trending", "popular"],
             episodeSources: [
-                "https://streamtape.com/e/yAaVlBy6kjU1pjr/",
+                "https://streamtape.com/e/doyw8L0vJAFkmzY/",
+                "https://streamtape.com/e/ZwYLXMaRLBTyXZ/",
              ]
         },
         {
@@ -50,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Yuji Itadori swallows a cursed talisman and becomes host to a powerful curse.",
             category: ["popular"],
             episodeSources: [
-                "https://player.vimeo.com/video/1078720743?badge=0&amp",
-                "https://player.vimeo.com/video/1078720979?badge=0&amp",
-                "https://player.vimeo.com/video/1078741228?h=826489d858&amp",
+                "https://streamtape.com/e/AM3KGoJjWZiXq6e/",
+                "https://streamtape.com/e/yGw4ZdJMQjS1pGz/",
+                "https://streamtape.com/e/eoBgY01Lz2hYG1B/",
+                "https://streamtape.com/e/BqyxGZwy1jTyJJe/",
             ]
         },
         {
@@ -95,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained.",
             category: ["trending"],
             episodeSources: [
-    "https://player.vimeo.com/video/1078742723?h=4d0ca6454f&amp",
+              "https://player.vimeo.com/video/1078742723?h=4d0ca6454f&amp",
+                "https://streamtape.com/e/mwPPbRvVBqTbwMY/",
         ]
         }
     
