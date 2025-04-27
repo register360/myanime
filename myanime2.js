@@ -3,17 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const animeData = [
         {
             id: 1,
-            title: "WIND BREAKER Season 2",
-            cover: "images/wind_breaker.jpg",
+            title: "Kaiju No. 8",
+            cover: "images/kaiju.jpg",
             rating: 4.8,
             episodes: 12,
             status: "Ongoing",
-            description: "Welcome back to Furth High School...",
+            description: "After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro make a pact to become officers in the Defense Force—a militarized organization tasked with protecting Japan from colossal monsters known as kaijuu.",
             category: ["trending", "new"],
             episodeSources: [
-                "",
-                "videos/wind_breaker_2.mp4",
-                // ... more episodes
             ]
         },
         {
@@ -38,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             category: ["trending", "popular"],
             episodeSources: [
                 "https://streamtape.com/e/doyw8L0vJAFkmzY/",
+                "https://streamtape.com/e/W8GGP21vlwcbVoL/",
+                "https://streamtape.com/e/YgKOj9WX4qhvQWa/",
+                "https://streamtape.com/e/4qy8KWqxmRiKABg/",
+                "https://streamtape.com/e/Kwrek8lWk8s0YKq/",
+                "https://streamtape.com/e/YgKOj9WX4qhvQWa/",
                 "https://streamtape.com/e/ZwYLXMaRLBTyXZ/",
              ]
         },
@@ -53,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
             episodeSources: [
                 "https://streamtape.com/e/AM3KGoJjWZiXq6e/",
                 "https://streamtape.com/e/yGw4ZdJMQjS1pGz/",
+                "https://streamtape.com/e/rDbObmBejzSbjQK/",
+                "https://streamtape.com/e/D2oavKlblYIkpp9/",
                 "https://streamtape.com/e/eoBgY01Lz2hYG1B/",
                 "https://streamtape.com/e/BqyxGZwy1jTyJJe/",
             ]
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained.",
             category: ["trending"],
             episodeSources: [
-              "https://player.vimeo.com/video/1078742723?h=4d0ca6454f&amp",
+              "",
                 "https://streamtape.com/e/mwPPbRvVBqTbwMY/",
         ]
         }
