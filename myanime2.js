@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             category: ["trending"],
             episodeSources: [
                 "https://streamtape.com/e/mwPPbRvVBqTbwMY/",
+                "https://streamtape.com/e/jbobZjvYbOFDXR/",
         ]
         }
     
