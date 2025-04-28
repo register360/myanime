@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained.",
             category: ["trending"],
             episodeSources: [
-              "",
                 "https://streamtape.com/e/mwPPbRvVBqTbwMY/",
         ]
         }
