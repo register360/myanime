@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 "https://streamtape.com/e/YgKOj9WX4qhvQWa/",
                 "https://streamtape.com/e/4qy8KWqxmRiKABg/",
                 "https://streamtape.com/e/Kwrek8lWk8s0YKq/",
-                "https://streamtape.com/e/YgKOj9WX4qhvQWa/",
                 "https://streamtape.com/e/ZwYLXMaRLBTyXZ/",
              ]
         },
